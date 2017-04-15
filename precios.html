@@ -2,67 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Allerta:400,700|Montserrat:400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/invie.css">
     <title>Precios</title>
 </head>
-<body>
-     <!-- Header -->
-    <header id="header" class="header background "> 
-            <div class="contenedor">
-                <!-- logotipo -->
-            <figure class="logotipo">
-                <img src="images/invie.png" alt="Invie logotipo " width="186" height="60" /> 
-            </figure>
-            <!-- logotipo -->
-            
-            <!-- menú -->
-            <nav class="menu">
-                <ul>
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>             
-                        <a href="index.html#guitarras">Guitarras</a>
-                    </li>
-                    <li>             
-                        <a href="precios.html">Precios</a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- menú -->
-        </div>
+<body class="precios">
+    <header id="header" class="header background"> <!-- header -->
+      <div class="contenedor">
+        <figure class="logotipo"> <!-- logotipo -->
+          <img src="images/invie.png" width="186" height="60" alt="Invie logotipo"/>
+        </figure>
+        <span class="burguer-button icon-menu" id="burguer-button"></span>
+        <nav class="menu" id="menu"> <!-- menu -->
+          <ul>
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="index.html#guitarras">Guitarras</a>
+            </li>
+            <li>
+              <a href="precios.html">Precios</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <!-- Header -->
     <section class="tabla">
-        <table class="contenedor">
-            <thead>
-                <tr>
-                    <th>Modelo</th>
-                    <th>Precio</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Invie Classic</td>
-                    <td>10000€</td>
-                    <td>Una guitarra muy pro</td>
-                </tr>
-                <tr>
-                    <td>Invie Classic</td>
-                    <td>10000€</td>
-                    <td>Una guitarra muy pro</td>
-                </tr>
-                <tr>
-                    <td>Invie Classic</td>
-                    <td>10000€</td>
-                    <td>Una guitarra muy pro</td>
-                </tr>
-            </tbody>
+      <div class="contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+               <th>Modelo</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Invie classic</td>
+              <td>$100000</td>
+              <td>Una guitarra muy pro</td>
+              <td>Invie classic</td>
+              <td>$100000</td>
+              <td>Una guitarra muy pro</td>
+            </tr>
+            <tr>
+              <td>Invie classic</td>
+              <td>$100000</td>
+              <td>Una guitarra muy pro</td>
+              <td>Invie classic</td>
+              <td>$100000</td>
+              <td>Una guitarra muy pro</td>
+            </tr>
+            <tr>
+              <td>Invie classic</td>
+              <td>$100000</td>
+              <td>Una guitarra muy pro</td>
+              <td>Invie classic</td>
+              <td>$100000</td>
+              <td>Una guitarra muy pro</td>
+            </tr>
+          </tbody>
         </table>
+      </div>
     </section>
        <!-- footer --> 
     <footer class="footer">
@@ -113,5 +121,35 @@
         </div> 
     </footer>
     <!-- footer --> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+    <script>
+
+        var consulta = window.matchMedia("(max-width: 500px)");
+        consulta.addListener(mediaQuery);
+
+        var $burgerButton = document.getElementById("burguer-button");
+        var $menu = document.getElementById("menu");
+
+        function toggleMenu(){
+            $menu.classList.toggle("active");
+            $burgerButton.classList.toggle("icon-cancel-circle");
+        }
+
+        function mediaQuery (){
+            if(consulta.matches){
+                 $burgerButton.addEventListener("touchstart", toggleMenu);
+
+            } else {
+                $burgerButton.removeEventListener("touchstart", toggleMenu);
+            }  
+        }
+         
+        mediaQuery();
+
+          var bLazy = new Blazy({ 
+            selector: 'img' // all images
+        });
+        
+    </script>
 </body>
 </html>

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Allerta:400,700|Montserrat:400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/invie.css">
+   
     <title>Invie</title>
 </head>
 <body>
@@ -17,12 +18,13 @@
     <header id="header" class="header contenedor"> 
         <!-- logotipo -->
         <figure class="logotipo">
-            <img src="images/invie.png" alt="Invie logotipo " width="186" height="60" /> 
+            <img src="images/invie.png" srcset="images/invie.png 1x, images/invie2x.png 2x" alt="Invie logotipo " width="186" height="60" /> 
         </figure>
         <!-- logotipo -->
         
+        <span id="burguer-button" class="burguer-button icon-menu"></span>
         <!-- menú -->
-        <nav class="menu">
+        <nav id="menu" class="menu">
             <ul>
                 <li>
                     <a href="index.html">Home</a>
@@ -51,7 +53,7 @@
     <section id="guitarras" class="guitarras contenedor">
         <h2>Nuestras guitarras</h2>
         <article class="guitarra">
-            <img class="right" src="images/invie-acustica.png" width="350" alt="Guitarra invie acústica">
+            <img class="right" data-src="images/invie-acustica.png |images/invie-acustica2x.png" width="350" alt="Guitarra invie acústica">
             <div class="contenedor-guitarra-a">
                 <h3 class="title-b">Invie Acústica</h3>
                 <ol>
@@ -62,7 +64,7 @@
             </div>
         </article>
         <article class="guitarra b">
-            <img class="left" src="images/invie-classic.png" width="350" alt="Guitarra invie classic">
+            <img class="left" data-src="images/invie-classic.png | images/invie-classic2x.png" width="350" alt="Guitarra invie classic">
             <div class="contenedor-guitarra-b">
                 <h3 class="title-b">Invie Classic</h3>
                 <ol>
@@ -79,7 +81,7 @@
     <footer class="footer">
         <div class="contenedor">
             <div class="contacto">
-                <img src="images/invie-white.png" alt="logotipo blanco">
+                <img data-src="images/invie-white.png | images/invie-white2x.png" alt="logotipo blanco">
                 <a href="tel:+34659109742"> <strong>Teléfono</strong> <span>659109742</span></a>
                 <a href="mailto:contacto@invie.com"><strong>E-mail</strong> <span>contacto@invie.com</span></a>
             </div>
@@ -124,5 +126,54 @@
         </div> 
     </footer>
     <!-- footer --> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+    <script>
+
+        var consulta = window.matchMedia("(max-width: 500px)");
+        consulta.addListener(mediaQuery);
+
+        var $burgerButton = document.getElementById("burguer-button");
+        var $menu = document.getElementById("menu");
+
+        function toggleMenu(){
+            $menu.classList.toggle("active");
+            $burgerButton.classList.toggle("icon-cancel-circle");
+        }
+
+        function showMenu (){
+            $menu.classList.add("active");
+            $burgerButton.classList.add("icon-cancel-circle");
+        }
+
+        function hideMenu (){
+             $menu.classList.remove("active");
+             $burgerButton.classList.remove("icon-cancel-circle");
+        }
+
+        function mediaQuery (){
+            if(consulta.matches){
+                 $burgerButton.addEventListener("touchstart", toggleMenu);
+
+            } else {
+                $burgerButton.removeEventListener("touchstart", toggleMenu);
+            }  
+        }
+         
+        mediaQuery();
+
+          var bLazy = new Blazy({ 
+            selector: 'img' // all images
+        });
+
+        //Gestos
+        var $body = document.body;
+
+        var gestos = new Hammer($body);
+        gestos.on('swipeleft', hideMenu);
+
+        gestos.on('swiperight', showMenu);
+        
+    </script>
 </body>
 </html>
